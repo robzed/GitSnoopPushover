@@ -23,6 +23,12 @@ You might need to change directory, depending on things (always try python3 GitS
 */10 * * * * cd some/dir && python3 ~/GitSnoopPushover.py . "10 minutes ago" 234afij3rksmfsdiofj3 3kjesfi4rt39ufeoijsf
 
 
+**Note:** There is a good chance that cron tasks don't run exactly 10 minutes apart - in that case, you have some non-zero chance of missing a specific commit. If that is important then you have three choices:
+1. Don't use this tool.
+2. Specify a slightly longer time (e.g. 610 seconds ago) and realise that you might get some committ messages twice.
+3. Modify the code to store the last revision fetched somewhere, and use that instead (or as well as) the time window.
+
+
 For more Cron Help, this is a pretty good page https://help.ubuntu.com/community/CronHowto
 
 
