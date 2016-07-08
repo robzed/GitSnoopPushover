@@ -14,9 +14,16 @@ python3 GitSnoopPushover.py . "600 seconds ago" 234afij3rksmfsdiofj3 3kjesfi4rt3
 Run from a CRON script like this...
 -----------------------------------
 
-<add here>
+For every 10 minutes, use 'crontab -e' and insert:
+
+*/10 * * * * python3 GitSnoopPushover.py some/dir "10 minutes ago" 234afij3rksmfsdiofj3 3kjesfi4rt39ufeoijsf
+
+You might need to change directory, depending on things (always try python3 GitSnoopPushover.py with arguments on the command line first to see what is happening) - this assumes that the GitSnooperPushover.py is in your home directory:
+
+*/10 * * * * cd some/dir && python3 ~/GitSnoopPushover.py . "10 minutes ago" 234afij3rksmfsdiofj3 3kjesfi4rt39ufeoijsf
 
 
+For more Cron Help, this is a pretty good page https://help.ubuntu.com/community/CronHowto
 
 
 License
