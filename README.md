@@ -17,3 +17,11 @@ Run from a CRON script like this...
 <add here>
 
 
+
+
+License
+-------
+
+Licensed under the MIT license - see file headers or 'LICENSE'.
+
+
