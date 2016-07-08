@@ -1,7 +1,8 @@
 Git Snoop Pushover
 ==================
 
-When run pushes via PushOver.net if anything has been committed.
+When run pushes via PushOver.net if anything has been committed to a Git repo. The script itself 
+is written in Python 3, and has been quickly tested on Python 3.2 and 3.4. 
 
 Run from the command line like this...
 --------------------------------------
@@ -38,4 +39,10 @@ License
 
 Licensed under the MIT license - see file headers or 'LICENSE'.
 
+
+Future Plans
+------------
+
+It would be nice not to get my own commits to a specific repo. Filtering these out with git 
+or with Python should be possible, say by name.
 
