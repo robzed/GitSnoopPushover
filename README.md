@@ -19,7 +19,9 @@ For every 10 minutes, use 'crontab -e' and insert:
 
 */10 * * * * python3 GitSnoopPushover.py some/dir "10 minutes ago" 234afij3rksmfsdiofj3 3kjesfi4rt39ufeoijsf
 
-You might need to change directory, depending on things (always try python3 GitSnoopPushover.py with arguments on the command line first to see what is happening) - this assumes that the GitSnooperPushover.py is in your home directory:
+This should even for directories outside a git repo (since we use log, we change the path first).
+
+However, you might need to change directory, depending on things (always try python3 GitSnoopPushover.py with arguments on the command line first to see what is happening) - this assumes that the GitSnooperPushover.py is in your home directory:
 
 */10 * * * * cd some/dir && python3 ~/GitSnoopPushover.py . "10 minutes ago" 234afij3rksmfsdiofj3 3kjesfi4rt39ufeoijsf
 
@@ -39,9 +41,16 @@ Other Options
 
 Without the two keys, it will just print to stdout. This is good for testing.
 
-python3 GitSnoopPushover.py . "1 day ago"
-python3 GitSnoopPushover.py . "1 hour ago"
+  python3 GitSnoopPushover.py . "1 day ago"
 
+  python3 GitSnoopPushover.py . "1 hour ago"
+
+It is be nice not to get my own commits to a specific repo. Filtering these out with git 
+or with Python is possible by name by adding a final (optional) argument:
+
+  python3 GitSnoopPushover.py . "1 week ago" "Rob"
+
+  python3 GitSnoopPushover.py ~/some/path/somewhere "1 month ago" "Alexandria Random"
 
 
 License
@@ -50,9 +59,9 @@ License
 Licensed under the MIT license - see file headers or 'LICENSE'.
 
 
-Future Plans
+Other Notes
 ------------
 
-It would be nice not to get my own commits to a specific repo. Filtering these out with git 
-or with Python should be possible, say by name.
+The script can edited to enlarge the message size - this is after MAX_PUSH_LENGTH near the top of the file.
+
 

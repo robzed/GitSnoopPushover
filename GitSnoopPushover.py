@@ -22,9 +22,7 @@
 # OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-GIT_TIME_PERIOD_IN_SECONDS = 600
-
-cmd = 'git log --format="%an %s" --since "{time}" {repo}'
+cmd = 'git log --format="%an %s" --since "{time}"'
 
 MAX_PUSH_LENGTH = 250
 
@@ -45,19 +43,31 @@ def send_message(message, appkey, userkey):
     
     
 def get_log(repo, time, not_starts_with):
-    out = subprocess.check_output(cmd.format(repo=repo, time=time), shell=True)
+    out = subprocess.check_output(cmd.format(time=time), cwd=repo, shell=True)
     
     # decode, and ignore errors
     out = out.decode("utf-8", errors="ignore")
 
     out = out.strip()
-    
+
+    if not_starts_with is not None:
+        revlist = out.split('\n')
+        outlist = []
+        #print(revlist)
+        for l in revlist:
+            if not l.startswith(not_starts_with):
+                outlist.append(l+'\n')
+        
+        out = "".join(outlist)
+        out = out.strip()
+
     if len(out) > MAX_PUSH_LENGTH:
         out = out[:MAX_PUSH_LENGTH-4] + " ..."
     
     if len(out) == 0:
         out = None
 
+    #print(out)
     return out
 
 
@@ -76,6 +86,7 @@ def main():
     if len(sys.argv) > 4:
         appkey = sys.argv[3]
         userkey = sys.argv[4]
+
     not_starts_with = None
     if len(sys.argv) == 6:
         not_starts_with = sys.argv[5]
