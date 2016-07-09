@@ -44,7 +44,7 @@ def send_message(message, appkey, userkey):
     
     
     
-def get_log(repo, time):
+def get_log(repo, time, not_starts_with):
     out = subprocess.check_output(cmd.format(repo=repo, time=time), shell=True)
     
     # decode, and ignore errors
@@ -62,18 +62,32 @@ def get_log(repo, time):
 
 
 def main():
-    if len(sys.argv) != 5:
-        print('Arguments: git-repo-URL "time since" pushover-app-key pushover-user-key')
+    if len(sys.argv) < 3 and len(sys.argv) > 6:
+        print('Arguments: git-repo-URL "time since" [pushover-app-key pushover-user-key] ["name starts with filter"]')
         print('Example:   . "600 seconds ago" abfe4545fpowe4534 22b32323rr232')
+
         sys.exit(1)
 
     repo = sys.argv[1]
     time = sys.argv[2]
-    appkey = sys.argv[3]
-    userkey = sys.argv[4]
-    log = get_log(repo, time)
+
+    appkey = None
+    userkey = None
+    if len(sys.argv) > 4:
+        appkey = sys.argv[3]
+        userkey = sys.argv[4]
+    not_starts_with = None
+    if len(sys.argv) == 6:
+        not_starts_with = sys.argv[5]
+    elif len(sys.argv) == 4:
+        not_starts_with = sys.argv[3]
+    
+    log = get_log(repo, time, not_starts_with)
     if log != None:
-        send_message(log, appkey, userkey)
+        if appkey is not None:
+            send_message(log, appkey, userkey)
+        else:
+            print(log)
     else:
         print("Nothing to do")
 

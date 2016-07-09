@@ -34,6 +34,16 @@ You might need to change directory, depending on things (always try python3 GitS
 For more Cron Help, this is a pretty good page https://help.ubuntu.com/community/CronHowto
 
 
+Other Options
+-------------
+
+Without the two keys, it will just print to stdout. This is good for testing.
+
+python3 GitSnoopPushover.py . "1 day ago"
+python3 GitSnoopPushover.py . "1 hour ago"
+
+
+
 License
 -------
 
