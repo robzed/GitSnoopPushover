@@ -22,9 +22,15 @@
 # OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-cmd = 'git log --format="%an %s" --since "{time}"'
+CHECK_ALL_BRANCHES = True
 
-MAX_PUSH_LENGTH = 250
+if CHECK_ALL_BRANCHES:
+    #  Other items considered: --source --remotes
+    cmd = 'git log --all --format="%an %d %s" --graph --since "{time}"'    # all branches
+else:
+    cmd = 'git log --format="%an %s" --since "{time}"'
+
+MAX_PUSH_LENGTH = 1024
 
 import subprocess
 import sys
