@@ -72,7 +72,7 @@ def get_log(repo, time, not_starts_with):
 
 
 def main():
-    if len(sys.argv) < 3 and len(sys.argv) > 6:
+    if len(sys.argv) < 3 or len(sys.argv) > 6:
         print('Arguments: git-repo-URL "time since" [pushover-app-key pushover-user-key] ["name starts with filter"]')
         print('Example:   . "600 seconds ago" abfe4545fpowe4534 22b32323rr232')
 
