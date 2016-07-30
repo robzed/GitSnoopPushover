@@ -65,3 +65,11 @@ Other Notes
 The script can edited to enlarge the message size - this is after MAX_PUSH_LENGTH near the top of the file.
 
 
+To Do Notes
+-----------
+
++ Filter on name is broken on the current version - after one of the previous changes
+
++ We could really do with tracking the last hashes send and avoiding the problem with missing or addiitional revisions.
+
+
